@@ -2,7 +2,10 @@ package co.kr.talentx.openscout;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import co.kr.talentx.openscout.dto.user.CUserRequest;
 
 @RestController
 public class OpenscoutController {
@@ -33,7 +36,7 @@ public class OpenscoutController {
 
   // 오픈 스카우트 과제 요구사항 4)를 참고해서 구현하세요.
   @PostMapping("/cu/login")
-  public String cu_login() {
+  public String cu_login(@RequestBody CUserRequest cUserRequest) {
     return "Company user logging in...";
   }
 

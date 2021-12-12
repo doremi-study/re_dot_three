@@ -8,10 +8,10 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Order(2)
+@Order(1)
 @Configuration
 @EnableWebSecurity
-public class SecurityNjuConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -19,15 +19,13 @@ public class SecurityNjuConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.headers().frameOptions().disable()
 			.and()
-			.antMatcher("/nju/**")
 				.authorizeRequests()
-				.antMatchers("**/signup/**", "/login/**")
+				.antMatchers("/","/cu/login", "/cu/signup", "/nju/signup", "/nju/login")
 				.permitAll()
-				.anyRequest().authenticated()
+				//.anyRequest().authenticated()
 			.and()
 				.formLogin()
-				//.loginPage("/nju/login")
-				.usernameParameter("idNumber")
+				.usernameParameter("businessNumber")
 				.passwordParameter("password")
 				.permitAll()
 			.and()
