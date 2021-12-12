@@ -7,11 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import co.kr.talentx.openscout.domain.user.UserRepository;
-import co.kr.talentx.openscout.dto.CUserRequest;
-import co.kr.talentx.openscout.dto.NjUserRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,11 +32,11 @@ public class OpenscoutControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @Autowired
-    private UserRepository userRepository;
+    // @Autowired
+    // private UserRepository userRepository;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    // @Autowired
+    // private ObjectMapper objectMapper;
 
 //  @Autowired
 //  private TestRestTemplate restTemplate;
@@ -72,37 +67,12 @@ public class OpenscoutControllerTest {
     @DisplayName("기업_회원가입")
     public void getCUSignup() throws Exception {
 
-        CUserRequest cuser = CUserRequest.builder().registNum("1231212345").pwd("12345").build();
-        String content = objectMapper.writeValueAsString(cuser);
-
-        mvc.perform(post("/cu/signup")
-                .content(content)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-
-//        assertThat(userRepository.findById())
-//        assertThat(userRepository.findByRegistNum(1L).get().getMemberId()).isEqualTo("martin");
-//        assertThat(memberRepository.findById(1L).get().getPassword()).isEqualTo("1234");
-//        assertThat(memberRepository.findById(1L).get().getPoint()).isEqualTo(100L);
     }
 
     @Test
     @Transactional
     public void 기업회원가입_중복체크() throws Exception {
-        //given
-        CUserRequest cuser = CUserRequest.builder().registNum("1231212345").pwd("12345").build();
-        String content = objectMapper.writeValueAsString(cuser);
 
-        //when
-        Exception e = assertThrows(Exception.class, () ->
-                mvc.perform(post("/cu/signup")
-                        .content(content)
-                        .contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isOk())
-        );
-
-        //then
-        assertThat(e.getMessage()).contains("이미 등록된 회원번호가 있습니다.");
     }
 
     @Test
@@ -122,13 +92,6 @@ public class OpenscoutControllerTest {
     @DisplayName("N잡러_회원가입")
     public void postNJUSignup() throws Exception {
 
-        NjUserRequest njUserRequest = NjUserRequest.builder().registNum("9210121234567").pwd("12345").build();
-        String content = objectMapper.writeValueAsString(njUserRequest);
-
-        mvc.perform(post("/nju/signup")
-                .content(content)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
     }
 
     @Test

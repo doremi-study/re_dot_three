@@ -1,32 +1,16 @@
 package co.kr.talentx.openscout;
 
-import co.kr.talentx.openscout.domain.user.User;
-import co.kr.talentx.openscout.dto.CUserRequest;
-import co.kr.talentx.openscout.dto.NjUserRequest;
-import co.kr.talentx.openscout.dto.ResultMessage;
-import co.kr.talentx.openscout.service.UserSerivice;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static org.springframework.http.ResponseEntity.ok;
-
-@RequiredArgsConstructor
 @RestController
 public class OpenscoutController {
-
-  private final UserSerivice userSerivice;
-
 
   // 오픈 스카우트 지원자 이메일을 반환하도록 구현하세요.
   @GetMapping("/")
   public String author_email() {
-    return "juuxmee@gmail.com";
+    return "support@talentx.co.kr";
   }
 
   // 오픈 스카우트 과제 요구사항 3)를 참고해서 구현하세요.
@@ -43,9 +27,8 @@ public class OpenscoutController {
 
   // 오픈 스카우트 과제 요구사항 4)를 참고해서 구현하세요.
   @PostMapping("/cu/signup")
-  public ResponseEntity<ResultMessage> cu_signup(@RequestBody CUserRequest cUserRequest) throws Exception {
-    userSerivice.saveCUser(cUserRequest);
-    return ResponseEntity.ok(ResultMessage.builder().code(HttpStatus.OK.value()).build());
+  public String cu_signup() {
+    return "Company user signing up...";
   }
 
   // 오픈 스카우트 과제 요구사항 4)를 참고해서 구현하세요.
@@ -62,9 +45,8 @@ public class OpenscoutController {
 
   // 오픈 스카우트 과제 요구사항 4)를 참고해서 구현하세요.
   @PostMapping("/nju/signup")
-  public ResponseEntity<ResultMessage> nju_signup(@RequestBody NjUserRequest njUserRequest) throws Exception {
-    userSerivice.saveNjUser(njUserRequest);
-    return ResponseEntity.ok(ResultMessage.builder().code(HttpStatus.OK.value()).build());
+  public String nju_signup() {
+    return "N-Job user signing up...";
   }
 
   // 오픈 스카우트 과제 요구사항 4)를 참고해서 구현하세요.

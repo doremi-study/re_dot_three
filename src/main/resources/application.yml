@@ -11,3 +11,13 @@ spring :
     show-sql: true
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    root: info
+    org.springframework: debug
+    org.springframework.security: info
+    org.hibernate: trace
+    org:
+      hibernate:
+        type: trace
